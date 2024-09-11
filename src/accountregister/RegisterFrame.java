@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package accountregister;
 
 import java.awt.FlowLayout;
@@ -16,12 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import java.lang.NumberFormatException;
-import java.lang.NullPointerException;
 
-/**
- *
- * @author Strikke
- */
+
 public class RegisterFrame extends JFrame implements ActionListener
 {   
     private TextFieldWithLabel accountNumberField;
@@ -86,6 +78,9 @@ public class RegisterFrame extends JFrame implements ActionListener
         String lastName;
         double balance;
         
+        //Tentar guardar o que está no campo "Número da Conta" como número em
+        //uma variável. Caso ocorra um erro de "NumberFormatException", quando
+        //tem texto que não pode ser convertido em número, exibir erro.
         try{
             accountNumber = Integer.parseInt(accountNumberField.textField.getText());
         }catch(NumberFormatException numberFormatException){
@@ -95,7 +90,21 @@ public class RegisterFrame extends JFrame implements ActionListener
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        //Verifica se o número da conta inserido pelo usuário é menor ou igual a 0.
+        //Caso for, informar erro ao usuário e retornar.
+        if(accountNumber <= 0){
+            JOptionPane.showMessageDialog(null, 
+                    "O campo NÚMERO DA CONTA não pode conter números negativos ou ser igual a 0.",
+                    "Erro ao inserir dados",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
       
+        
+        //Tentar guardar o que está no campo "Saldo" como número em uma variável.
+        //Caso ocorra um erro de "NumberFormatException", quando tem texto que
+        //não pode ser convertido em número, exibir mensagem de erro.
         try{
             balance = Double.parseDouble(balanceField.textField.getText());
         }catch(NumberFormatException numberFormatException){
@@ -106,6 +115,8 @@ public class RegisterFrame extends JFrame implements ActionListener
             return;
         }
         
+        //Se o conteúdo do campo "Nome" tiver um tamanho de 0 (estiver vazio),
+        //exibir erro
         firstName = firstNameField.textField.getText();
         if(firstName.length() == 0){
             JOptionPane.showMessageDialog(null, 
@@ -115,6 +126,8 @@ public class RegisterFrame extends JFrame implements ActionListener
             return;
         }
         
+        //Se o conteúdo do campo "Sobrenome" tiver um tamanho de 0 
+        //(estiver vazio), exibir erro
         lastName = lastNameField.textField.getText();
         if(lastName.length() == 0){
             JOptionPane.showMessageDialog(null, 
