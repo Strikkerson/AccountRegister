@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package accountregister;
 
 import java.io.FileNotFoundException;
@@ -23,12 +19,18 @@ public class CreateTextFile
 
         catch ( SecurityException securityException )
         {
-            System.err.println( "Você não tem acesso para escrever neste arquivo." );
+            JOptionPane.showMessageDialog(null, 
+                    "Você não tem acesso para escrever neste arquivo.", 
+                    "Erro ao inicializar arquivo de registro",
+                    JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         catch ( FileNotFoundException fileNotFoundException)
         {
-            System.err.println( "Erro ao abrir ou criar o arquivo." );
+            JOptionPane.showMessageDialog(null, 
+                    "Erro ao abrir ou criar o arquivo.", 
+                    "Erro ao inicializar arquivo de registro",
+                    JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
     }
